@@ -32,7 +32,7 @@ Si quieres contribuir al desarrollo del juego, sigue estos pasos:
 5. Sube tus cambios: `git push origin tu-rama`
 6. Abre un Pull Request en GitHub.
 
-¡Esperamos tus contribuciones!
+¡Agradecemos tus contribuciones! Además, sígueme en mis redes sociales para apoyar este proyecto y otros a través de este enlace: [https://linktr.ee/mario.conf](https://linktr.ee/mario.conf).
 
 ---
 
