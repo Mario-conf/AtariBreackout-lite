@@ -1,4 +1,4 @@
-### Atari Breakout
+### Atari Breakout lite
 
 ---
 
@@ -36,7 +36,7 @@ Si quieres contribuir al desarrollo del juego, sigue estos pasos:
 
 ---
 
-### Atari Breakout
+### Atari Breakout lite
 
 ---
 
