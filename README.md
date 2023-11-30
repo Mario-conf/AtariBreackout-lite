@@ -1,4 +1,4 @@
-### Atari Breakout lite
+### Atari Breakout Lite
 
 ---
 
@@ -8,7 +8,7 @@
 
 Este es un simple juego de Atari Breakout implementado en HTML, CSS y JavaScript. El objetivo del juego es destruir todos los bloques utilizando una pelota controlada por una paleta.
 
-### Cómo jugar
+### Cómo Jugar
 
 1. Abre el archivo `index.html` en tu navegador.
 2. Utiliza las teclas de flecha derecha e izquierda o mueve el ratón para controlar la paleta.
@@ -21,7 +21,7 @@ Este es un simple juego de Atari Breakout implementado en HTML, CSS y JavaScript
 - Detección de colisiones para rebotar la pelota y destruir bloques.
 - Alerta de juego perdido y recarga de la página.
 
-### Cómo contribuir
+### Cómo Contribuir
 
 Si quieres contribuir al desarrollo del juego, sigue estos pasos:
 
@@ -36,7 +36,7 @@ Si quieres contribuir al desarrollo del juego, sigue estos pasos:
 
 ---
 
-### Atari Breakout lite
+### Atari Breakout Lite
 
 ---
 
@@ -70,4 +70,4 @@ If you want to contribute to the development of the game, follow these steps:
 5. Push your changes: `git push origin your-branch`
 6. Open a Pull Request on GitHub.
 
-We welcome your contributions!
+We welcome your contributions! Also, follow me on my social media to support this project and others through this link: [https://linktr.ee/mario.conf](https://linktr.ee/mario.conf).
