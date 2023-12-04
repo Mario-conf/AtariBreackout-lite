@@ -166,7 +166,7 @@ window.onload = function () {
 
         // Dibujar puntaje
         ctx.font = "16px Arial";
-        ctx.fillStyle = "#0095DD";
+        ctx.fillStyle = "black";
         ctx.fillText("Puntos: " + score, 8, 20);
 
         // Dibujar nivel
