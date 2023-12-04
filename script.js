@@ -160,18 +160,18 @@ window.onload = function () {
         } else if (leftPressed && paddleX > 0) {
             paddleX -= 7;
         }
-
+        
         x += dx;
         y += dy;
-
-        // Dibujar puntaje
+        
         ctx.font = "16px Arial";
         ctx.fillStyle = "black";
         ctx.fillText("Puntos: " + score, 8, 20);
-
-        // Dibujar nivel
+        
+        ctx.font = "16px Arial"; 
+        ctx.fillStyle = "black"; 
         ctx.fillText("Nivel: " + level, canvas.width - 80, 20);
-
+        
         requestAnimationFrame(draw);
     }
 
