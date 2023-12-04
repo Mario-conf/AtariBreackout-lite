@@ -131,7 +131,6 @@ function resetBricks() {
         }
     }
 }
-
 function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     drawBricks();
@@ -162,6 +161,14 @@ function draw() {
 
     x += dx;
     y += dy;
+
+    // Dibujar puntaje
+    ctx.font = "16px Arial";
+    ctx.fillStyle = "#0095DD";
+    ctx.fillText("Puntos: " + score, 8, 20);
+
+    // Dibujar nivel
+    ctx.fillText("Nivel: " + level, canvas.width - 80, 20);
 
     requestAnimationFrame(draw);
 }
