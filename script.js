@@ -2,15 +2,15 @@ window.onload = function () {
     const canvas = document.getElementById("breakoutCanvas");
     const ctx = canvas.getContext("2d");
 
-    let brickRowCount = 5;
-    let brickColumnCount = 3;
-    const brickWidth = 75;
+    let brickRowCount = 1;
+    let brickColumnCount = 5;  // Número inicial de columnas
+    const brickWidth = (canvas.width - brickColumnCount * 2) / brickColumnCount; // Ancho ajustado
     const brickHeight = 20;
-    const brickPadding = 10;
+    const brickPadding = 2;  // Espacio entre bloques
     let brickOffsetTop = 30;
-    let brickOffsetLeft = (canvas.width - (brickColumnCount * (brickWidth + brickPadding))) / 2;
+    let brickOffsetLeft = 0;
 
-    const bricks = createBricks();
+    let bricks = [];
 
     let paddleHeight = 10;
     let paddleWidth = 75;
@@ -108,7 +108,7 @@ window.onload = function () {
                             score = 0;
                             brickRowCount++;
                             brickColumnCount++;
-                            brickOffsetLeft = (canvas.width - (brickColumnCount * (brickWidth + brickPadding))) / 2;
+                            brickOffsetTop += brickHeight + brickPadding;
                             resetBricks();
                             dx = (dx > 0) ? dx + 1 : dx - 1;
                             dy = (dy > 0) ? dy + 1 : dy - 1;
@@ -120,11 +120,7 @@ window.onload = function () {
     }
 
     function resetBricks() {
-        for (let c = 0; c < brickColumnCount; c++) {
-            for (let r = 0; r < brickRowCount; r++) {
-                bricks[c][r] = { x: 0, y: 0, status: 1, color: getRandomColor() };
-            }
-        }
+        bricks = createBricks();
     }
 
     function draw() {
@@ -169,5 +165,6 @@ window.onload = function () {
         requestAnimationFrame(draw);
     }
 
+    resetBricks();
     draw();
 };
