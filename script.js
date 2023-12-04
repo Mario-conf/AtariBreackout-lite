@@ -7,9 +7,8 @@ window.onload = function () {
     const brickWidth = 75;
     const brickHeight = 20;
     const brickPadding = 10;
-    const brickOffsetTop = 30;
-    const brickOffsetLeft = 30;
-
+    let brickOffsetTop = 30; 
+    let brickOffsetLeft = (canvas.width - (brickColumnCount * (brickWidth + brickPadding))) / 2;  
     const bricks = [];
 
     let paddleHeight = 10;
@@ -116,10 +115,9 @@ window.onload = function () {
                         if (score === brickRowCount * brickColumnCount) {
                             level++;
                             score = 0;
-                            brickRowCount++; // Aumentar filas en cada nuevo nivel
-                            brickColumnCount++; // Aumentar columnas en cada nuevo nivel
+                            brickRowCount++;
+                            brickColumnCount++;
                             resetBricks();
-                            // Aumentar velocidad del balón en cada nuevo nivel
                             dx = (dx > 0) ? dx + 1 : dx - 1;
                             dy = (dy > 0) ? dy + 1 : dy - 1;
                         }
@@ -130,8 +128,13 @@ window.onload = function () {
     }
 
     function resetBricks() {
+        brickOffsetLeft = (canvas.width - (brickColumnCount * (brickWidth + brickPadding))) / 2;
+        brickOffsetTop = 30;
         for (let c = 0; c < brickColumnCount; c++) {
             for (let r = 0; r < brickRowCount; r++) {
+                if (bricks[c] === undefined) {
+                    bricks[c] = [];
+                }
                 bricks[c][r] = { x: 0, y: 0, status: 1, color: getRandomColor() };
             }
         }
