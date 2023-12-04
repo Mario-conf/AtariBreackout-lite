@@ -27,6 +27,9 @@ let y = canvas.height - 30;
 let dx = 2;
 let dy = -2;
 
+let score = 0;
+let level = 1;
+
 document.addEventListener("keydown", keyDownHandler);
 document.addEventListener("keyup", keyUpHandler);
 document.addEventListener("mousemove", mouseMoveHandler);
@@ -108,8 +111,23 @@ function collisionDetection() {
                 if (x > b.x && x < b.x + brickWidth && y > b.y && y < b.y + brickHeight) {
                     dy = -dy;
                     b.status = 0;
+                    score++;
+
+                    if (score === brickRowCount * brickColumnCount) {
+                        level++;
+                        score = 0;
+                        resetBricks();
+                    }
                 }
             }
+        }
+    }
+}
+
+function resetBricks() {
+    for (let c = 0; c < brickColumnCount; c++) {
+        for (let r = 0; r < brickRowCount; r++) {
+            bricks[c][r] = { x: 0, y: 0, status: 1, color: getRandomColor() };
         }
     }
 }
