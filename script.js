@@ -116,10 +116,10 @@ window.onload = function () {
                         if (score === brickRowCount * brickColumnCount) {
                             level++;
                             score = 0;
-                            brickRowCount++; 
-                            brickColumnCount++; 
+                            brickRowCount++; // Aumentar filas en cada nuevo nivel
+                            brickColumnCount++; // Aumentar columnas en cada nuevo nivel
                             resetBricks();
-                           
+                            // Aumentar velocidad del balón en cada nuevo nivel
                             dx = (dx > 0) ? dx + 1 : dx - 1;
                             dy = (dy > 0) ? dy + 1 : dy - 1;
                         }
