@@ -2,8 +2,8 @@ window.onload = function () {
     const canvas = document.getElementById("breakoutCanvas");
     const ctx = canvas.getContext("2d");
 
-    let brickRowCount = 5;
-    let brickColumnCount = 3;
+    const brickRowCount = 5;
+    const brickColumnCount = 3;
     const brickWidth = 75;
     const brickHeight = 20;
     const brickPadding = 10;
@@ -11,6 +11,12 @@ window.onload = function () {
     const brickOffsetLeft = 30;
 
     const bricks = [];
+    for (let c = 0; c < brickColumnCount; c++) {
+        bricks[c] = [];
+        for (let r = 0; r < brickRowCount; r++) {
+            bricks[c][r] = { x: 0, y: 0, status: 1, color: getRandomColor() };
+        }
+    }
 
     let paddleHeight = 10;
     let paddleWidth = 75;
@@ -82,17 +88,12 @@ window.onload = function () {
 
     function drawBricks() {
         for (let c = 0; c < brickColumnCount; c++) {
-            bricks[c] = [];
             for (let r = 0; r < brickRowCount; r++) {
-                if (bricks[c][r] === undefined || bricks[c][r].status === 1) {
+                if (bricks[c][r].status === 1) {
                     let brickX = c * (brickWidth + brickPadding) + brickOffsetLeft;
                     let brickY = r * (brickHeight + brickPadding) + brickOffsetTop;
-                    if (bricks[c][r] === undefined) {
-                        bricks[c][r] = { x: brickX, y: brickY, status: 1, color: getRandomColor() };
-                    } else {
-                        bricks[c][r].x = brickX;
-                        bricks[c][r].y = brickY;
-                    }
+                    bricks[c][r].x = brickX;
+                    bricks[c][r].y = brickY;
                     ctx.beginPath();
                     ctx.rect(brickX, brickY, brickWidth, brickHeight);
                     ctx.fillStyle = bricks[c][r].color;
@@ -116,12 +117,7 @@ window.onload = function () {
                         if (score === brickRowCount * brickColumnCount) {
                             level++;
                             score = 0;
-                            brickRowCount++; 
-                            brickColumnCount++; 
                             resetBricks();
-                           
-                            dx = (dx > 0) ? dx + 1 : dx - 1;
-                            dy = (dy > 0) ? dy + 1 : dy - 1;
                         }
                     }
                 }
@@ -164,18 +160,18 @@ window.onload = function () {
         } else if (leftPressed && paddleX > 0) {
             paddleX -= 7;
         }
-
+        
         x += dx;
         y += dy;
-
+        
         ctx.font = "16px Arial";
         ctx.fillStyle = "black";
         ctx.fillText("Puntos: " + score, 8, 20);
-
-        ctx.font = "16px Arial";
-        ctx.fillStyle = "black";
+        
+        ctx.font = "16px Arial"; 
+        ctx.fillStyle = "black"; 
         ctx.fillText("Nivel: " + level, canvas.width - 80, 20);
-
+        
         requestAnimationFrame(draw);
     }
 
