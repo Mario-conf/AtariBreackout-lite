@@ -1,4 +1,4 @@
-window.onload = function () {
+window.addEventListener("load", function () {
     const canvas = document.getElementById("breakoutCanvas");
     const ctx = canvas.getContext("2d");
 
