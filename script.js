@@ -2,8 +2,8 @@ window.onload = function () {
     const canvas = document.getElementById("breakoutCanvas");
     const ctx = canvas.getContext("2d");
 
-    const brickRowCount = 5;
-    const brickColumnCount = 3;
+    let brickRowCount = 5;
+    let brickColumnCount = 3;
     const brickWidth = 75;
     const brickHeight = 20;
     const brickPadding = 10;
@@ -11,12 +11,6 @@ window.onload = function () {
     const brickOffsetLeft = 30;
 
     const bricks = [];
-    for (let c = 0; c < brickColumnCount; c++) {
-        bricks[c] = [];
-        for (let r = 0; r < brickRowCount; r++) {
-            bricks[c][r] = { x: 0, y: 0, status: 1, color: getRandomColor() };
-        }
-    }
 
     let paddleHeight = 10;
     let paddleWidth = 75;
@@ -31,12 +25,17 @@ window.onload = function () {
     let score = 0;
     let level = 1;
 
+   
     document.addEventListener("keydown", keyDownHandler);
     document.addEventListener("keyup", keyUpHandler);
-    document.addEventListener("mousemove", mouseMoveHandler);
 
+    canvas.addEventListener("touchstart", touchStartHandler);
+    canvas.addEventListener("touchmove", touchMoveHandler);
+
+  
     let rightPressed = false;
     let leftPressed = false;
+    let touchX;
 
     function keyDownHandler(e) {
         if (e.key === "Right" || e.key === "ArrowRight") {
@@ -54,10 +53,18 @@ window.onload = function () {
         }
     }
 
-    function mouseMoveHandler(e) {
-        let relativeX = e.clientX - canvas.offsetLeft;
-        if (relativeX > 0 && relativeX < canvas.width) {
-            paddleX = relativeX - paddleWidth / 2;
+    function touchStartHandler(e) {
+        if (e.touches && e.touches.length === 1) {
+            touchX = e.touches[0].clientX;
+        }
+    }
+
+    function touchMoveHandler(e) {
+        if (e.touches && e.touches.length === 1) {
+            let relativeX = e.touches[0].clientX - canvas.offsetLeft;
+            if (relativeX > 0 && relativeX < canvas.width) {
+                paddleX = relativeX - paddleWidth / 2;
+            }
         }
     }
 
@@ -88,12 +95,17 @@ window.onload = function () {
 
     function drawBricks() {
         for (let c = 0; c < brickColumnCount; c++) {
+            bricks[c] = [];
             for (let r = 0; r < brickRowCount; r++) {
-                if (bricks[c][r].status === 1) {
-                    let brickX = c * (brickWidth + brickPadding) + brickOffsetLeft;
+                if (bricks[c][r] === undefined || bricks[c][r].status === 1) {
+                    let brickX = c * (brickWidth + brickPadding) + (canvas.width - (brickColumnCount * (brickWidth + brickPadding))) / 2;
                     let brickY = r * (brickHeight + brickPadding) + brickOffsetTop;
-                    bricks[c][r].x = brickX;
-                    bricks[c][r].y = brickY;
+                    if (bricks[c][r] === undefined) {
+                        bricks[c][r] = { x: brickX, y: brickY, status: 1, color: getRandomColor() };
+                    } else {
+                        bricks[c][r].x = brickX;
+                        bricks[c][r].y = brickY;
+                    }
                     ctx.beginPath();
                     ctx.rect(brickX, brickY, brickWidth, brickHeight);
                     ctx.fillStyle = bricks[c][r].color;
@@ -164,12 +176,12 @@ window.onload = function () {
         x += dx;
         y += dy;
 
-        // Dibujar puntaje
+  
         ctx.font = "16px Arial";
         ctx.fillStyle = "black";
         ctx.fillText("Puntos: " + score, 8, 20);
 
-        // Dibujar nivel
+     
         ctx.fillText("Nivel: " + level, canvas.width - 80, 20);
 
         requestAnimationFrame(draw);
