@@ -151,7 +151,7 @@ window.onload = function () {
                 dy = -dy;
             } else {
                 document.location.reload();
-                alert("Perdiste. Recarga la página para volver a intentarlo.");
+                alert("Game Over.Click OK to play again");
             }
         }
 
@@ -164,13 +164,13 @@ window.onload = function () {
         x += dx;
         y += dy;
 
-        // Dibujar puntaje
+       
         ctx.font = "16px Arial";
         ctx.fillStyle = "black";
-        ctx.fillText("Puntos: " + score, 8, 20);
+        ctx.fillText("Score: " + score, 8, 20);
 
-        // Dibujar nivel
-        ctx.fillText("Nivel: " + level, canvas.width - 80, 20);
+        
+        ctx.fillText("Level: " + level, canvas.width - 80, 20);
 
         requestAnimationFrame(draw);
     }
